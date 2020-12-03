@@ -14,7 +14,7 @@ function ajaxRequest(){
       nationsString=data.split(';');
   });
 for (let i=0; i<12; i++){ 
-  var nationsData=nationsString[i].split['-'];
+  var nationsData=nationsString[i].split['$'];
   document.getElementById("name_nac_proj"+i+"").innerHTML=nationsData[0];
   document.getElementById("budjet"+i+"").innerHTML=nationsData[1];
   document.getElementById("kolichfedproj"+i+"").innerHTML=nationsData[2];
