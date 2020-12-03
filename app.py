@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for
-from parsers import connection
+from parsers.connection import conn, cursor
 
 app = Flask(__name__)
 
