@@ -1,0 +1,60 @@
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+  html, body {
+    margin: 0;
+    background-color: #FFF;
+    color: #0F110C !important;
+  }
+
+a {
+    text-decoration: none;
+  }
+.homepage{
+	padding: 0 0px 0px;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.jumbotron{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.content{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.nacproekt{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.naccard{
+    background: linear-gradient(90deg, #7764CA 0%, #6474CA 100%);
+    box-shadow: 0 0.75rem 2.25rem rgba(92, 141, 255, 0.12);
+    color: #fff;
+    margin-right: 10px;
+}
+.container-fluid{
+    padding-left: 10%;
+}
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+.padcard{
+    padding:30px 20px 40px 20px;
+}
+.row-flex, .row-flex > div[class*='col-']
+{  display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+flex:1 1 auto; }
+.fed-btn{
+    background-color: #6474CA;
+}
+.fed-btn:hover{
+    background-color: #FFF;
+    color: #7764CA;
+}

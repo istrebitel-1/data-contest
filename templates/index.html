@@ -1,15 +1,310 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/styles.css">
-    <script type="text/javascript" src='../static/index.js'></script>
-    <title>Mmm</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Задача 1.</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="../css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <div class ='flex'>
-    <h1>Банан пишет запросы для БД, которые нужны Сенечке</h1><a href="https://vk.com/za_4to_a">Банан делает бд</a>
+  <div class='homepage'>
+    <div class='jumbotron text-center'>
+      <h1>Визуализация карточек-профилей нацпроектов и федпроектов на портале «Госрасходы»</h1>
+      <h4>Департамент Внешних коммуникаций</h4>
     </div>
+    <div class='container-fluid'>
+      <div class='row row-flex row-flex-wrap'>
+        <div class='col-12 col-md-6 col-xl-4 nacproekt b0'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-A.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj0'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet0'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva0'>
+                <canvas id="labelChart0"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr0')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj0'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div>
+        <div class='col-12 col-md-6 col-xl-4 nacproekt b2'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-D.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj2'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet2'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva2'>
+                <canvas id="labelChart1"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr2')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj2'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div><div class='col-12 col-md-6 col-xl-4 nacproekt b3'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-E.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj3'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet3'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva3'>
+                <canvas id="labelChart2"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr3')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj3'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div><div class='col-12 col-md-6 col-xl-4 nacproekt b4'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-F.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj4'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet4'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva4'>
+                <canvas id="labelChart3"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr0')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj4'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div><div class='col-12 col-md-6 col-xl-4 nacproekt b5'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-G.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj5'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet5'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva5'>
+                <canvas id="labelChart4"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr5')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj5'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div><div class='col-12 col-md-6 col-xl-4 nacproekt b6'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-L.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj6'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet6'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva6'>
+                <canvas id="labelChart5"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr6')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj6'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div><div class='col-12 col-md-6 col-xl-4 nacproekt b7'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-N.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj7'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet7'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva7'>
+                <canvas id="labelChart6"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr7')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj7'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div><div class='col-12 col-md-6 col-xl-4 nacproekt b8'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-P.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj8'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet8'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva8'>
+                <canvas id="labelChart7"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr8')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj8'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div><div class='col-12 col-md-6 col-xl-4 nacproekt b9'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-R.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj9'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet9'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva9'>
+                <canvas id="labelChart8"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr9')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj9'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div><div class='col-12 col-md-6 col-xl-4 nacproekt b10'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-S.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj10'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet10'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva10'>
+                <canvas id="labelChart9"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr10')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj10'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div><div class='col-12 col-md-6 col-xl-4 nacproekt b11'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-V.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj11'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet11'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva11'>
+                <canvas id="labelChart10"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr11')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj11'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div>
+        <div class='col-12 col-md-6 col-xl-4 nacproekt b1'>
+          <div class='row naccard card'>
+            <div class='padcard'>
+              <div class='col-12 mb-4'>
+                <img src='https://spending.gov.ru/static/img/icon-I.svg'>
+              </div>
+              <div class='col-12 mb-4'>
+                <div class='h3 font-weight-bold' id='name_nac_proj1'></div>
+              </div>
+              <div class='col-12 mb-4'>
+                <span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet1'>&nbsp;</span>
+              </div>
+              <div class='col-12 mb-4' id='canva1'>
+                <canvas id="labelChart11"></canvas>
+              </div>
+              <div class='col-12 mb-4'>
+                <button type="submit" class="btn fed-btn" oclick="FederalProject('nastionPr1')">
+                 <span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj1'></span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End your project here-->
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
+  <!-- Your custom scripts (optional) -->
+  <script src="../static/script.js"></script> 
+
 </body>
 </html>
