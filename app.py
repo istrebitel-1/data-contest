@@ -21,11 +21,30 @@ def page_not_found(e):
 @app.route('/db_natdata', methods=['GET'])
 def database_np():
     cursor.execute("select np.project_name||'$'||round(cast(np.released_budget/1000000000 as numeric), 2)||' млрд. руб.$'||count(fp.id_federal_project)||'$'||count(fp.id_federal_project)||'$'||count(fp.id_federal_project)||'$'||pictures.url||'$'||np.np_api_id||';'"
-                   " from national_projects np"
-                   " join pictures on pictures.id_np = np.id_national_project"
-               " join federal_projects fp on np.id_national_project = fp.id_national_project"
-               " group by np.project_name, np.released_budget, np.id_national_project, pictures.url, np.np_api_id"
-               " order by np.id_national_project")
+        " from national_projects np"
+        " join pictures on pictures.id_np = np.id_national_project"
+        " join federal_projects fp on np.id_national_project = fp.id_national_project"
+        " group by np.project_name, np.released_budget, np.id_national_project, pictures.url, np.np_api_id"
+        " order by np.id_national_project")
+
+    results = cursor.fetchall()
+    output = ""
+    for item in results:
+        for subitem in item:
+            output+=subitem
+    output = output[:-1]
+    return output
+
+
+#федеральные проекты
+@app.route('/db_fedList', methods=['GET'])
+def database_fp():
+    api_np_id = request.args['tempid']
+    cursor.execute(
+        "select fp.project_name||'$'||fp.fp_api_id||';'"
+        "from federal_projects fp "
+        "join national_projects np on np.id_national_project = fp.id_national_project "
+        "where np.np_api_id ='%s'" %(api_np_id))
 
     results = cursor.fetchall()
     output = ""
