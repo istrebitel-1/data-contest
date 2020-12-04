@@ -35,6 +35,9 @@ a {
     color: #fff;
     margin-right: 10px;
 }
+.naccard:hover{
+    background: linear-gradient(90deg, #4d3ba8 0%, #3b49a8 100%);
+}
 .container-fluid{
     padding-left: 10%;
 }
@@ -43,6 +46,7 @@ a {
 }
 .padcard{
     padding:30px 20px 40px 20px;
+    max-width: 415px;
 }
 .row-flex, .row-flex > div[class*='col-']
 {  display: -webkit-box;
