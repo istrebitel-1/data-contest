@@ -1,7 +1,14 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, send_from_directory
 from parsers.connection import conn, cursor
+import os
+
 
 app = Flask(__name__)
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 @app.route('/')
 def index():
@@ -26,7 +33,6 @@ def database_np():
         " join federal_projects fp on np.id_national_project = fp.id_national_project"
         " group by np.project_name, np.released_budget, np.id_national_project, pictures.url, np.np_api_id"
         " order by np.id_national_project")
-
     results = cursor.fetchall()
     output = ""
     for item in results:
@@ -45,7 +51,6 @@ def database_fp():
         "from federal_projects fp "
         "join national_projects np on np.id_national_project = fp.id_national_project "
         "where np.np_api_id ='%s'" %(api_np_id))
-
     results = cursor.fetchall()
     output = ""
     for item in results:
@@ -53,7 +58,6 @@ def database_fp():
             output+=subitem
     output = output[:-1]
     return output
-
 
 if __name__ == "__main__":
     app.run(debug=True)
