@@ -48,13 +48,14 @@ a {
     padding:30px 20px 40px 20px;
     max-width: 415px;
 }
-.row-flex, .row-flex > div[class*='col-']
-{  display: -webkit-box;
-display: -moz-box;
-display: -ms-flexbox;
-display: -webkit-flex;
-display: flex;
-flex:1 1 auto; }
+.row-flex, .row-flex > div[class*='col-']{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex:1 1 auto; 
+}
 .fed-btn{
     background-color: #6474CA;
 }

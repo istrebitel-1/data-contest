@@ -34,7 +34,7 @@ for (let i=0; i<nationsString.length; i++){
   html_str1+="<canvas id='labelChart"+i+"'></canvas>";
   html_str1+="</div>";
   html_str1+="<div class='col-12 mb-4'>";
-  html_str1+="<button type='submit' class='btn fed-btn' onclick='FederalProject(this)' id='natPr"+i+"'>";
+  html_str1+="<button type='submit' class='btn fed-btn' onclick='FederalProject(this)' id='"+nationsData[6]+"'>";
   html_str1+="<span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj"+i+"'></span>";
   html_str1+="</button>";
   html_str1+="</div>";
