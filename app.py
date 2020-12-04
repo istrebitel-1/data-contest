@@ -61,3 +61,4 @@ def database_fp():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    #app.run(host="26.173.145.160")
