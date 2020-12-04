@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 from parsers.connection import conn, cursor
 
 app = Flask(__name__)
@@ -11,6 +11,12 @@ def index():
     url_for('static', filename='styleSideBar.css')
     return render_template("index.html")
 
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
 #национальные проекты
 @app.route('/db_natdata', methods=['GET'])
 def database_np():
@@ -20,6 +26,7 @@ def database_np():
                " join federal_projects fp on np.id_national_project = fp.id_national_project"
                " group by np.project_name, np.released_budget, np.id_national_project, pictures.url, np.np_api_id"
                " order by np.id_national_project")
+
     results = cursor.fetchall()
     output = ""
     for item in results:
