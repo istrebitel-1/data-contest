@@ -14,11 +14,11 @@ function FederalProject(elmnt) {
     .done(function(data){
       federalsString=data.split(';');
 
-      for (let i=0; i<nationsString.length; i++){
-        var federalsData=nationsString[i].split('$');
+      for (let i=0; i<federalsString.length; i++){
+        var federalsData=federalsString[i].split('$');
         var parent_el = document.getElementById('federalList');
         html_str1="";
-        html_str1+="<button type='submit' class='btn' onclick='OpenFederal(this)' id='"+federalsData[0]+"'>"+federalsData[1]+"</button>";
+        html_str1+="<button type='submit' class='btn' onclick='OpenFederal(this)' id='"+federalsData[1]+"'>"+federalsData[0]+"</button>";
         var ele=document.createElement("div");
         ele.setAttribute("class",'col-12');
         parent_el.appendChild(ele).innerHTML = html_str1;
