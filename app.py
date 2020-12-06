@@ -27,11 +27,12 @@ def page_not_found(e):
 #национальные проекты
 @app.route('/db_natdata', methods=['GET'])
 def database_np():
-    cursor.execute("select np.project_name||'$'||round(cast(np.released_budget/1000000000 as numeric), 2)||' млрд. руб.$'||count(fp.id_federal_project)||'$'||count(fp.id_federal_project)||'$'||count(fp.id_federal_project)||'$'||pictures.url||'$'||np.np_api_id||';'"
+    cursor.execute("select np.project_name||'$'||npb.budget||' млрд. руб.$'||count(fp.id_federal_project)||'$'||round(cast(np.released_budget/1000000000 as numeric), 2)||'$'||round(cast(npb.budget-(np.released_budget/1000000000) as numeric), 2)||'$'||pictures.url||'$'||np.np_api_id||';'"
         " from national_projects np"
         " join pictures on pictures.id_np = np.id_national_project"
         " join federal_projects fp on np.id_national_project = fp.id_national_project"
-        " group by np.project_name, np.released_budget, np.id_national_project, pictures.url, np.np_api_id"
+        " join national_project_budget npb on npb.id_national_project = np.id_national_project"
+        " group by np.project_name, np.released_budget, np.id_national_project, pictures.url, np.np_api_id, npb.budget"
         " order by np.id_national_project")
     results = cursor.fetchall()
     output = ""
@@ -60,5 +61,5 @@ def database_fp():
     return output
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    #app.run(host="26.173.145.160")
+    #app.run(debug=True)
+    app.run(host="26.173.145.160", port="80")
