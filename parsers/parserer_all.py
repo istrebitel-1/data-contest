@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from os import remove
 import datetime
 import json
+
 # custom
 from connection import conn, cursor
 
@@ -65,9 +66,6 @@ def get_national_and_federal_projects_info(url):
             proj_id += 1  # инкремент id федерального провекта
 
 
-
-
-
 def subsidies_info(url, api_fp_id, fp_id, s_start_id, pages):
 
     # субсидии фeдпроекта
@@ -108,7 +106,6 @@ def subsidies_info(url, api_fp_id, fp_id, s_start_id, pages):
             subs_id_f += 1
 
         print('Успешно записано 50 субсидий, всего: %i' %(subs_id_f-1))
-
 
 
 startdt = datetime.datetime.now() # время начала парсинга

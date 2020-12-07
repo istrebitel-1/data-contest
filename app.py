@@ -70,7 +70,7 @@ def db_fedwindow():
         " ||'$'||fp.subsidies_count||'$'||round(cast(fp.subsidies_sum as numeric), 2)"
         " from test.national_projects np"
         " join test.federal_projects fp on np.id_national_project = fp.id_national_project "
-        " join test.subsidies s on s.id_federal_project = fp.id_federal_project"
+        " left join test.subsidies s on s.id_federal_project = fp.id_federal_project"
         " where fp.fp_api_id = '%s'" %(api_fp_id)
     )
     info_fp = cursor.fetchall()
@@ -85,35 +85,39 @@ def db_fedwindow():
     cursor.execute(
         " select distinct release_date"
         " from subsidies s2 "
-        " join federal_projects fp on fp.id_federal_project = s2.id_federal_project "
+        " right join federal_projects fp on fp.id_federal_project = s2.id_federal_project "
         " where fp.fp_api_id = '%s'" %(api_fp_id)
     )
     years = cursor.fetchall()
-    last_year = '' 
+    if years[0][0] != None:
+        last_year = '' 
 
-    for item in years:
-        for subitem in item:
-            output += str(subitem) + ';'
-            last_year = subitem 
+        for item in years:
+            for subitem in item:
+                output += str(subitem) + ';'
+                last_year = subitem 
 
-    output = output[:-1] +'$'
+        output = output[:-1] +'$'
 
-    cursor.execute(
-        " select manager||';'||recipient||';'||subsidy_sum||';'||release_date"
-        " from test.subsidies s "
-        " join test.federal_projects fp on fp.id_federal_project = s.id_federal_project "
-        " where fp.fp_api_id = '%s' and s.release_date = '%s'"
-        " order by s.subsidy_sum desc"
-        " limit 3" %(api_fp_id, last_year)
-    )
+        cursor.execute(
+            " select manager||';'||recipient||';'||subsidy_sum||';'||release_date"
+            " from test.subsidies s "
+            " join test.federal_projects fp on fp.id_federal_project = s.id_federal_project "
+            " where fp.fp_api_id = '%s' and s.release_date = '%s'"
+            " order by s.subsidy_sum desc"
+            " limit 3" %(api_fp_id, last_year)
+        )
 
-    top_three = cursor.fetchall()
+        top_three = cursor.fetchall()
 
-    for item in top_three:
-        for subitem in item:
-            output += str(subitem) + ';'
+        for item in top_three:
+            for subitem in item:
+                output += str(subitem) + ';'
 
-    output = output[:-1]
+        output = output[:-1]
+
+    else:
+        output += 'None'
 
     return output
 
@@ -152,4 +156,4 @@ def admin_panel():
 
 if __name__ == "__main__":
     #app.run(debug=True)
-    app.run(debug=True, host="26.237.70.37", port="5000")
+    app.run(debug=True, host="26.173.145.160", port="80")
