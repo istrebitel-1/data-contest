@@ -14,7 +14,7 @@ function OpenFederal(elmnt){
   $federals
   .done(function(data){
 
-    federalmassive=data;
+    federalString=data.split('$');
 
     var elem=document.getElementById(''+stringId[0]+'ID');
     elem.classList.remove("col-md-6","col-xl-4");
@@ -27,13 +27,12 @@ function OpenFederal(elmnt){
       for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";  
       }
-    var federalString=federalmassive[0].split('$');
     html_str1="";
     html_str1+="<div class='col-6'>";
-    html_str1+="<div class='h3 font-weight-bold' id='name_nac_proj'>"+federalString[0]+"</div>";
+    html_str1+="<div class='h3 font-weight-bold'>"+federalString[0]+"</div>";
     html_str1+="</div>";
     html_str1+="<div class='col-6'>";
-    html_str1+="<div class='h3 font-weight-bold' id='name_nac_proj'>"+federalString[1]+"</div>";
+    html_str1+="<div class='h3 font-weight-bold>"+federalString[1]+"</div>";
     html_str1+="</div>";
     html_str1+="<div class='col-md-3 col-6'>";
     html_str1+="<p class='headItem h6'>Количество контрактов</p>";
@@ -58,8 +57,8 @@ function OpenFederal(elmnt){
     html_str1+="<select id='year' class='form-control' name='year_name' onchange='getSubs(this)'>";
     html_str1+='<option value="2020">2020</option>';
 
-    federalString=federalmassive[1].split('$');
-    for (let i=0; i<federalString.length; i++){
+    federalData=federalString[6].split(';');
+    for (let i=0; i<federalData.length; i++){
       html_str1+='<option value="'+federalData[i]+'">'+federalData[i]+'</option>';
     }
 
@@ -67,23 +66,23 @@ function OpenFederal(elmnt){
     html_str1+="</form>";
     html_str1+="</div>";
 
-    federalString=federalmassive[2].split('$');
-    for (let i=0; i<federalString.length; i++){
+    federalData=federalString[7].split(';');
+    for (let i=0; i<federalData.length; i++){
       html_str1+="<div class='col-md-3 col-6''>";
       html_str1+="<p class='headItem h6'>Распорядитель</p>";
-      html_str1+="<p class='bodyItem' id='"+fp_id+i+"'>"+federalString[i]+"</p>";
+      html_str1+="<p class='bodyItem' id='"+fp_id+i+"'>"+federalData[i]+"</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-3 col-6''>";
       html_str1+="<p class='headItem h6'>Получатель</p>";
-      html_str1+="<p class='bodyItem' id='"+fp_id+i+"'>"+federalString[i]+"</p>";
+      html_str1+="<p class='bodyItem' id='"+fp_id+i+"'>"+federalData[i]+"</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-3 col-6''>";
       html_str1+="<p class='headItem h6'>Сумма</p>";
-      html_str1+="<p class='bodyItem' id='"+fp_id+i+"'>"+federalString[i]+"</p>";
+      html_str1+="<p class='bodyItem' id='"+fp_id+i+"'>"+federalData[i]+"</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-3 col-6''>";
       html_str1+="<p class='headItem h6'>Срок реализации</p>";
-      html_str1+="<p class='bodyItem' id='"+fp_id+i+"'>"+federalString[i]+"</p>";
+      html_str1+="<p class='bodyItem' id='"+fp_id+i+"'>"+federalData[i]+"</p>";
       html_str1+="</div>";
     }; 
       html_str1+="<div class='col-12'><buttton class='btn btn-backtm' onclick='toMenu('"+stringId[0]+"ID', 'CN"+stringId[0]+"')'>назад</button></div>";
