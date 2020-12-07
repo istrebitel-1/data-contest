@@ -1,12 +1,33 @@
 .headItem.h6 {
     margin-bottom: 0 !important;
+    color:#A06CD5;
 }
 .bodyItem {
     margin-bottom: 25px;
+    font-weight: 700;
+    color: #000001;
 }
 .contfed{
     text-align: center;
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.07);
     border-radius: 10px;
-    background-image: url(https://media.discordapp.net/attachments/783709006258503691/785496223003967558/43cc7f780eecc46aaa453d5be55737eb.png?width=502&height=677);
+    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
+.contfed .h3{
+    color:#A06CD5;
+}
+.mar-top{
+    margin-top: 15px;
+}
+.btn-backtm {
+    background: transparent;
+    border: 2px solid #A06CD5;
+    border-radius: 5px;
+    color: #0F110C;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+.btn-backtm:hover{
+    background:#A06CD5;
+    color: white;
 }
