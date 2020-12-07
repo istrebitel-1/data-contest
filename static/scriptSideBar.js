@@ -1,6 +1,4 @@
 function FederalProject(elmnt) {
-  document.getElementById("myNav").style.width = "100%";
-  document.getElementById('federalList').innerHTML='';
   var tempid=elmnt.id;
   function ajaxRequest(){
     return $.ajax({
@@ -16,15 +14,39 @@ function FederalProject(elmnt) {
 
       for (let i=0; i<federalsString.length; i++){
         var federalsData=federalsString[i].split('$');
-        var parent_el = document.getElementById('federalList');
+        parent_el = document.getElementById('ONav'+tempid+'');
         html_str1="";
-        html_str1+="<button type='submit' class='btn btn-fedlist font-weight-bold' onclick='OpenFederal(this)' id='"+federalsData[1]+"'>"+federalsData[0]+"</button>";
+        html_str1+="<button type='submit' class='btn btn-fedlist font-weight-bold' onclick='OpenFederal(this)' id='"+tempid+";"+federalsData[1]+"'>"+federalsData[0]+"</button>";
         var ele=document.createElement("div");
-        ele.setAttribute("class",'col-12');
+        ele.setAttribute("class",'col-12 CN'+tempid+'');
         parent_el.appendChild(ele).innerHTML = html_str1;
+
+        if (i==federalsString.length-1){
+          html_str1="";
+          html_str1+="<button type='submit' class='btn btn-fedback font-weight-bold' onclick='FederalBack(this)' id='"+tempid+"'>назад</button>";
+          var ele=document.createElement("div");
+          ele.setAttribute("class",'col-12 CN'+tempid+'');
+          parent_el.appendChild(ele).innerHTML = html_str1;
+        }
+
       }
+      tabcontent = document.getElementsByClassName("ON"+tempid+"");
+      for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+      }
+      document.getElementById('ONav'+tempid+'').style.background='linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%)';
     });
 }
-function closeNav() {
-  document.getElementById("myNav").style.width = "0%";
+function FederalBack(elmnt) {
+  var tempid=elmnt.id;
+
+  tabcontent = document.getElementsByClassName("CN"+tempid+"");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+  tabcontent = document.getElementsByClassName("ON"+tempid+"");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "block";
+    }
+    document.getElementById('ONav'+tempid+'').style.background='linear-gradient(90deg, #7764CA 0%, #6474CA 100%)';  
 }

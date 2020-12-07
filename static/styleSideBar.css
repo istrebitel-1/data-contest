@@ -1,58 +1,13 @@
-.overlay {
-    
-    height: 100%;
-    width: 0;
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    background-image: linear-gradient(60deg, #29323ce8 0%, #485563e3 100%);
-    overflow-x: hidden; 
-    transition: 0.5s; 
-}
-.overlay-content {
-    position: relative;
-    top: 20%; 
-    width: 100%; 
-    text-align: center; 
-    margin-top: 30px; 
-}
-
-
-.overlay a {
-    padding: 8px;
-    text-decoration: none;
-    font-size: 36px;
-    color: #7764CA;
-    display: block; 
-    transition: 0.3s; 
-}
-
-.overlay a:hover, .overlay a:focus {
-    color: #4d3ba8;
-}
-
-.overlay .closebtn {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
-}
-
-@media screen and (max-height: 450px) {
-    .overlay a {font-size: 20px}
-    .overlay .closebtn {
-        font-size: 40px;
-        top: 15px;
-        right: 35px;
-    }
-}
 .btn-fedlist{
-    width: 80%;
-    background: linear-gradient(90deg, #7764CA 0%, #6474CA 100%);
-    font-size: large;
-    color:#fff;
+    width: 95%;
+    background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+    color:#000;
 }
 .btn-fedlist:hover{
-    background-image: linear-gradient(90deg, #4d3ba8 0%, #3b49a8 100%);
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+.btn-fedback{
+    width: 95%;
+    background-image: linear-gradient(-225deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);
+    color:#fff;
 }
