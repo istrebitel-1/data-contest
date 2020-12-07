@@ -61,16 +61,18 @@ function OpenFederal(elmnt){
       html_str1+="<span>года реализации</span>";
       html_str1+="<select id='year"+fp_id+"' class='form-control' name='year_name' onchange='getSubs(this)'>";
     
-      federalData=federalString[7].split(';');
-      html_str1+='<option value="'+federalData[federalData.length-1]+'">'+federalData[federalData.length-1]+'</option>';
-      for (let i=0; i<federalData.length-1; i++){
-        html_str1+='<option value="'+federalData[i]+'">'+federalData[i]+'</option>';
-      }
-
-      html_str1+="</select>";
-      html_str1+="</form>";
-      html_str1+="</div>";
       if (federalString[8]!=undefined){
+        
+        federalData=federalString[7].split(';');
+        html_str1+='<option value="'+federalData[federalData.length-1]+'">'+federalData[federalData.length-1]+'</option>';
+        for (let i=0; i<federalData.length-1; i++){
+          html_str1+='<option value="'+federalData[i]+'">'+federalData[i]+'</option>';
+        }
+
+        html_str1+="</select>";
+        html_str1+="</form>";
+        html_str1+="</div>";
+     
         federalData=federalString[8].split(';');
         for (let i=0; i<federalData.length; i+=4){
           html_str1+="<div class='row Subsbackground' id='row"+i+"'>"
