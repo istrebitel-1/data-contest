@@ -1,6 +1,12 @@
-.headItem{
+.headItem.h6 {
     margin-bottom: 0 !important;
 }
-.bodyItem{
+.bodyItem {
     margin-bottom: 25px;
+}
+.contfed{
+    text-align: center;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
+    background-image: url(https://media.discordapp.net/attachments/783709006258503691/785496223003967558/43cc7f780eecc46aaa453d5be55737eb.png?width=502&height=677);
 }

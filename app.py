@@ -86,14 +86,15 @@ def db_fedwindow():
         " select distinct release_date"
         " from subsidies s2 "
         " join federal_projects fp on fp.id_federal_project = s2.id_federal_project "
-        " where fp.fp_api_id = '%s'"
-        " and s2.release_date <> '2020'" %(api_fp_id)
+        " where fp.fp_api_id = '%s'" %(api_fp_id)
     )
     years = cursor.fetchall()
+    last_year = '' 
 
     for item in years:
         for subitem in item:
             output += str(subitem) + ';'
+            last_year = subitem 
 
     output = output[:-1] +'$'
 
@@ -101,9 +102,9 @@ def db_fedwindow():
         " select manager||';'||recipient||';'||subsidy_sum||';'||release_date"
         " from test.subsidies s "
         " join test.federal_projects fp on fp.id_federal_project = s.id_federal_project "
-        " where fp.fp_api_id = '%s' and s.release_date = '2020'"
+        " where fp.fp_api_id = '%s' and s.release_date = '%s'"
         " order by s.subsidy_sum desc"
-        " limit 3" %(api_fp_id)
+        " limit 3" %(api_fp_id, last_year)
     )
 
     top_three = cursor.fetchall()
@@ -120,8 +121,27 @@ def db_fedwindow():
 # Даты реализации субсидий для федерального проекта
 @app.route('/db_fedwindow/year', methods=['GET'])
 def db_fp_years():
+    years = request.args['year']
+    api_fp_id = request.args['federal_id']
+    cursor.execute(
+        " select manager||';'||recipient||';'||subsidy_sum||';'||release_date"
+        " from test.subsidies s "
+        " join test.federal_projects fp on fp.id_federal_project = s.id_federal_project "
+        " where fp.fp_api_id = '%s' and s.release_date = '%s'"
+        " order by s.subsidy_sum desc"
+        " limit 3" %(api_fp_id, years)
+    )
+    top_three = cursor.fetchall()
+    print(top_three)
+    output = ''
 
-    return
+    for item in top_three:
+        for subitem in item:
+            output += str(subitem) + ';'
+
+    output = output[:-1]
+
+    return output
 
 
 # панель администратора
@@ -132,4 +152,4 @@ def admin_panel():
 
 if __name__ == "__main__":
     #app.run(debug=True)
-    app.run(debug=True, host="26.173.145.160", port="80")
+    app.run(debug=True, host="26.237.70.37", port="5000")
