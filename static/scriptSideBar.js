@@ -11,25 +11,32 @@ function FederalProject(elmnt) {
     $federals
     .done(function(data){
       federalsString=data.split(';');
-
-      for (let i=0; i<federalsString.length; i++){
-        var federalsData=federalsString[i].split('$');
-        parent_el = document.getElementById('ONav'+tempid+'');
-        html_str1="";
-        html_str1+="<button type='submit' class='btn btn-fedlist font-weight-bold' onclick='OpenFederal(this)' id='"+tempid+";"+federalsData[1]+"'>"+federalsData[0]+"</button>";
-        var ele=document.createElement("div");
-        ele.setAttribute("class",'col-12 CN'+tempid+'');
-        parent_el.appendChild(ele).innerHTML = html_str1;
-
-        if (i==federalsString.length-1){
+      if(document.getElementsByClassName("CN"+tempid+"")[0]==null){
+        for (let i=0; i<federalsString.length; i++){
+          var federalsData=federalsString[i].split('$');
+          parent_el = document.getElementById('ONav'+tempid+'');
           html_str1="";
-          html_str1+="<button type='submit' class='btn btn-fedback font-weight-bold' onclick='FederalBack(this)' id='"+tempid+"'>назад</button>";
+          html_str1+="<button type='submit' class='btn btn-fedlist font-weight-bold' onclick='OpenFederal(this)' id='"+tempid+";"+federalsData[1]+"'>"+federalsData[0]+"</button>";
           var ele=document.createElement("div");
           ele.setAttribute("class",'col-12 CN'+tempid+'');
           parent_el.appendChild(ele).innerHTML = html_str1;
-        }
 
-      }
+          if (i==federalsString.length-1){
+            parent_el = document.getElementById('ONav'+tempid+'');
+            html_str1="";
+            html_str1+="<button type='submit' class='btn btn-fedback font-weight-bold' onclick='FederalBack(this)' id='"+tempid+"'>назад</button>";
+            var ele=document.createElement("div");
+            ele.setAttribute("class",'col-12 CN'+tempid+'');
+            parent_el.appendChild(ele).innerHTML = html_str1;
+          }
+
+        }
+    }else{
+      tabcontent = document.getElementsByClassName("CN"+tempid+"");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "block";
+    }
+    }
       tabcontent = document.getElementsByClassName("ON"+tempid+"");
       for (i = 0; i < tabcontent.length; i++) {
       tabcontent[i].style.display = "none";
