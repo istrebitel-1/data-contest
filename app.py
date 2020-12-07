@@ -152,9 +152,24 @@ def db_fp_years():
 # панель администратора
 @app.route('/admin/login', methods=['GET'])
 def admin_panel():
-    return render_template("admin_panel.html")
+    return render_template("admin_panel_login.html")
+
+@app.route('/admin/login/check', methods=['GET'])
+def login():
+    login = request.args['login']
+    password = request.args['password']
+    cursor.execute(
+        "select login, password "
+        "from logins"
+    )
+    results = cursor.fetchall()
+
+    for item in results:
+        if login == item[0] and password == item[1]:
+            return render_template('admin_panel.html')
+        else:
+            return 'wrong'
 
 
 if __name__ == "__main__":
-    #app.run(debug=True)
     app.run(debug=True, host="26.173.145.160", port="80")
