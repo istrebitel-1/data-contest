@@ -66,11 +66,12 @@ def database_fp():
 def db_fedwindow():
     api_fp_id = request.args['fp_id']
     cursor.execute(
-        "select distinct np.project_name||'$'||fp.project_name||'$'||fp.contracts_count||'$'||round(cast(fp.contracts_sum as numeric), 2)"
+        "select distinct p2.url||'$'||np.project_name||'$'||fp.project_name||'$'||fp.contracts_count||'$'||round(cast(fp.contracts_sum as numeric), 2)"
         " ||'$'||fp.subsidies_count||'$'||round(cast(fp.subsidies_sum as numeric), 2)"
         " from test.national_projects np"
         " join test.federal_projects fp on np.id_national_project = fp.id_national_project "
         " left join test.subsidies s on s.id_federal_project = fp.id_federal_project"
+        " join pictures p2 on p2.id_np = np.id_national_project "
         " where fp.fp_api_id = '%s'" %(api_fp_id)
     )
     info_fp = cursor.fetchall()
@@ -131,7 +132,7 @@ def db_fp_years():
         " select manager||';'||recipient||';'||subsidy_sum||';'||release_date"
         " from test.subsidies s "
         " join test.federal_projects fp on fp.id_federal_project = s.id_federal_project "
-        " where fp.fp_api_id = '%s' and s.release_date = '%s'"
+        " where fp.fp_api_id = '%s' and s.release_date = %s"
         " order by s.subsidy_sum desc"
         " limit 3" %(api_fp_id, years)
     )
