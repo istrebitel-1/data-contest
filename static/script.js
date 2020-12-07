@@ -19,34 +19,34 @@ for (let i=0; i<nationsString.length; i++){
 
   var parent_el = document.getElementById('dynamic');
   html_str1="";
-  html_str1+="<div class='row naccard card'>";
-  html_str1+="<div class='padcard'>";
-  html_str1+="<div class='col-12 mb-4'>";
+  html_str1+="<div class='row cardList' id='ONav"+nationsData[6]+"'>";
+  html_str1+="<div class='col-12 mb-4 ON"+nationsData[6]+"'>";
   html_str1+="<img src="+nationsData[5]+">";
   html_str1+="</div>";
-  html_str1+="<div class='col-12 mb-4'>";
-  html_str1+="<div class='h3 font-weight-bold' id='name_nac_proj"+i+"'></div>";
+  html_str1+="<div class='col-12 mb-4 ON"+nationsData[6]+"'>";
+  html_str1+="<div class='h3 font-weight-bold' id='name_nac_proj"+i+"'>"+nationsData[0]+"</div>";
   html_str1+="</div>";
-  html_str1+="<div class='col-12 mb-4'>";
-  html_str1+="<span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet"+i+"'>&nbsp;</span>";
+  html_str1+="<div class='col-12 mb-4 ON"+nationsData[6]+"'>";
+  html_str1+="<span class='h5 font-weight-bold'>Бюджет&nbsp;</span><span class='h4 font-weight-bold money' id='budjet"+i+"'>&nbsp;"+nationsData[1]+"</span>";
   html_str1+="</div>";
-  html_str1+="<div class='col-12 mb-4' id='canva"+i+"'>";
+  html_str1+="<div class='col-12 mb-4 ON"+nationsData[6]+"' id='canva"+i+"'>";
   html_str1+="<canvas id='labelChart"+i+"'></canvas>";
   html_str1+="</div>";
-  html_str1+="<div class='col-12 mb-4'>";
-  html_str1+="<button type='submit' class='btn fed-btn' onclick='FederalProject(this)' id='"+nationsData[6]+"'>";
-  html_str1+="<span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj"+i+"'></span>";
+  html_str1+="<div class='col-12 mb-4 ON"+nationsData[6]+"'>";
+  html_str1+="<button type='button' class='btn fed-btn' onclick='FederalProject(this)' id='"+nationsData[6]+"'>";
+  html_str1+="<span class='h5 font-weight-bold'>Федеральные проекты&nbsp;</span><span class='h5 font-weight-bold' id='kolichfedproj"+i+"'>"+nationsData[2]+"</span>";
   html_str1+="</button>";
   html_str1+="</div>";
   html_str1+="</div>";
-  html_str1+="</div>";
   var ele=document.createElement("div");
-  ele.setAttribute("class",'col-12 col-md-6 col-xl-4 nacproekt b'+i+'');
+  ele.setAttribute("class",'col-12 col-md-6 col-xl-4 nacproekt');
+  ele.setAttribute("id",""+nationsData[6]+"ID");
   parent_el.appendChild(ele).innerHTML = html_str1;
-
-  document.getElementById("name_nac_proj"+i+"").innerHTML=nationsData[0];
+  
+  /*document.getElementById("name_nac_proj"+i+"").innerHTML=nationsData[0];
   document.getElementById("budjet"+i+"").innerHTML=nationsData[1];
-  document.getElementById("kolichfedproj"+i+"").innerHTML=nationsData[2];
+  document.getElementById("kolichfedproj"+i+"").innerHTML=nationsData[2];*/
+  
   var ctxP = document.getElementById("labelChart"+i+"").getContext('2d');
   Chart.defaults.global.defaultFontColor = 'white';
   var myPieChart = new Chart(ctxP, {
@@ -85,7 +85,8 @@ for (let i=0; i<nationsString.length; i++){
           labels: {
             title: {
               font: {
-                size: '16'
+                size: '12',
+                
               }
             }
           }
