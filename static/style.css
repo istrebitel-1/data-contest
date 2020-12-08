@@ -62,7 +62,11 @@ a {
     flex:1 1 auto; 
 }
 .fed-btn{
-    background-color: #6474CA;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
     width: 95%;
 }
 .fed-btn:hover{

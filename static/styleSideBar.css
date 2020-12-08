@@ -1,13 +1,27 @@
 .btn-fedlist{
     width: 95%;
-    background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
-    color:#000;
+    background: #fff;
+    color:rgb(5, 5, 5);
+    border-radius: 5px;
+    border: 2px solid #fff;
 }
 .btn-fedlist:hover{
-    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: transparent;
+    color: #fff;
+    display: inline-block;
 }
 .btn-fedback{
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
     width: 95%;
-    background-image: linear-gradient(-225deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);
-    color:#fff;
+}
+.btn-fedback:hover{
+    background-color: #FFF;
+    color: #7764CA;
+}
+.btn{
+    letter-spacing: 1px;
 }

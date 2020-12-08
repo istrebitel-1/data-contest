@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, request, send_from_directory
 from parsers.connection import conn, cursor
 import os
+import json
 
 
 app = Flask(__name__)
@@ -27,100 +28,82 @@ def page_not_found(e):
 # национальные проекты
 @app.route('/db_natdata', methods=['GET'])
 def database_np():
-    cursor.execute("select np.project_name||'$'||npb.budget||' млрд. руб.$'||count(fp.id_federal_project)||'$'||round(cast(np.released_budget/1000000000 as numeric), 2)||'$'||round(cast(npb.budget-(np.released_budget/1000000000) as numeric), 2)||'$'||pictures.url||'$'||np.np_api_id||';'"
-        " from national_projects np"
-        " join pictures on pictures.id_np = np.id_national_project"
-        " join federal_projects fp on np.id_national_project = fp.id_national_project"
-        " join national_project_budget npb on npb.id_national_project = np.id_national_project"
-        " group by np.project_name, np.released_budget, np.id_national_project, pictures.url, np.np_api_id, npb.budget"
-        " order by np.id_national_project")
+    cursor.execute("select np.project_name, npb.budget||' млрд. руб.',count(fp.id_federal_project), cast(round(cast(np.released_budget/1000000000 as numeric), 2) as float), cast(round(cast(npb.budget-(np.released_budget/1000000000) as numeric), 2) as float), pictures.url, np.np_api_id"
+                    " from national_projects np"
+                    " join pictures on pictures.id_np = np.id_national_project"
+                    " join federal_projects fp on np.id_national_project = fp.id_national_project"
+                    " join national_project_budget npb on npb.id_national_project = np.id_national_project"
+                    " group by np.project_name, np.released_budget, np.id_national_project, pictures.url, np.np_api_id, npb.budget"
+                    " order by np.id_national_project")
     results = cursor.fetchall()
-    output = ""
-    for item in results:
-        for subitem in item:
-            output+=subitem
-    output = output[:-1]
-    return output
+    return json.dumps(results, ensure_ascii=False, separators=(',', ': '))
 
 
 # федеральные проекты
 @app.route('/db_fedList', methods=['GET'])
 def database_fp():
-    api_np_id = request.args['tempid']
-    cursor.execute(
-        " select fp.project_name||'$'||fp.fp_api_id||';'"
-        " from federal_projects fp "
-        " join national_projects np on np.id_national_project = fp.id_national_project "
-        " where np.np_api_id ='%s'" %(api_np_id))
+    api_np_id = request.args['np_id']
+    cursor.execute(" select fp.project_name, fp.fp_api_id"
+                    " from federal_projects fp "
+                    " join national_projects np on np.id_national_project = fp.id_national_project "
+                    "  where np.np_api_id ='%s'" %(api_np_id))
     results = cursor.fetchall()
-    output = ""
-    for item in results:
-        for subitem in item:
-            output+=subitem
-    output = output[:-1]
-    return output
+    return json.dumps(results, ensure_ascii=False, separators=(',', ': '))
 
 
 # Окно по федеральному проекту
 @app.route('/db_fedwindow', methods=['GET'])
 def db_fedwindow():
     api_fp_id = request.args['fp_id']
-    cursor.execute(
-        "select distinct p2.url||'$'||np.project_name||'$'||fp.project_name||'$'||fp.contracts_count||'$'||round(cast(fp.contracts_sum as numeric), 2)"
-        " ||'$'||fp.subsidies_count||'$'||round(cast(fp.subsidies_sum as numeric), 2)"
-        " from test.national_projects np"
-        " join test.federal_projects fp on np.id_national_project = fp.id_national_project "
-        " left join test.subsidies s on s.id_federal_project = fp.id_federal_project"
-        " join pictures p2 on p2.id_np = np.id_national_project "
-        " where fp.fp_api_id = '%s'" %(api_fp_id)
+    cursor.execute("select distinct p2.url, np.project_name, fp.project_name, fp.contracts_count, cast(round(cast(fp.contracts_sum as numeric), 2) as float)"
+                    " ,fp.subsidies_count, cast(round(cast(fp.subsidies_sum as numeric), 2) as float)"
+                    " from national_projects np"
+                    " join federal_projects fp on np.id_national_project = fp.id_national_project "
+                    " left join subsidies s on s.id_federal_project = fp.id_federal_project"
+                    " join pictures p2 on p2.id_np = np.id_national_project "
+                    " where fp.fp_api_id = '%s'" %(api_fp_id)
+    )   
+
+    results = cursor.fetchall()
+
+    cursor.execute(" select distinct release_date"
+                    " from subsidies s2 "
+                    " right join federal_projects fp on fp.id_federal_project = s2.id_federal_project "
+                    " where fp.fp_api_id = '%s'" %(api_fp_id)
     )
-    info_fp = cursor.fetchall()
-    output = ''
 
-    for item in info_fp:
-        for subitem in item:
-            output += str(subitem) 
-
-    output  +='$'
-
-    cursor.execute(
-        " select distinct release_date"
-        " from subsidies s2 "
-        " right join federal_projects fp on fp.id_federal_project = s2.id_federal_project "
-        " where fp.fp_api_id = '%s'" %(api_fp_id)
-    )
     years = cursor.fetchall()
+    last_year = ''
     if years[0][0] != None:
-        last_year = '' 
 
         for item in years:
             for subitem in item:
-                output += str(subitem) + ';'
-                last_year = subitem 
+                last_year = subitem
 
-        output = output[:-1] +'$'
-
-        cursor.execute(
-            " select manager||';'||recipient||';'||subsidy_sum||';'||release_date"
-            " from test.subsidies s "
-            " join test.federal_projects fp on fp.id_federal_project = s.id_federal_project "
-            " where fp.fp_api_id = '%s' and s.release_date = '%s'"
-            " order by s.subsidy_sum desc"
-            " limit 3" %(api_fp_id, last_year)
+        cursor.execute(" select subs_url, manager, recipient, subsidy_sum, release_date"
+                    " from subsidies s "
+                    " join federal_projects fp on fp.id_federal_project = s.id_federal_project "
+                    " where fp.fp_api_id = '%s' and s.release_date = '%s'"
+                    " order by s.subsidy_sum desc"
+                    " limit 3" %(api_fp_id, last_year)
         )
 
         top_three = cursor.fetchall()
 
-        for item in top_three:
-            for subitem in item:
-                output += str(subitem) + ';'
+        for i in range(1, len(years)):
+            years[0] += years[i]
 
-        output = output[:-1]
+        results.append(years[0])
 
+        if top_three != None:
+
+            for i in range(1, len(top_three)):
+                top_three[0] += top_three[i]
+            results.append(top_three[0])
     else:
-        output += 'none'
+        results.append(years[0])
 
-    return output
+    return json.dumps(results, ensure_ascii=False, separators=(',', ': '))
 
 
 # Даты реализации субсидий для федерального проекта
@@ -128,25 +111,17 @@ def db_fedwindow():
 def db_fp_years():
     years = request.args['year']
     api_fp_id = request.args['federal_id']
-    cursor.execute(
-        " select manager||';'||recipient||';'||subsidy_sum||';'||release_date"
-        " from test.subsidies s "
-        " join test.federal_projects fp on fp.id_federal_project = s.id_federal_project "
-        " where fp.fp_api_id = '%s' and s.release_date = %s"
-        " order by s.subsidy_sum desc"
-        " limit 3" %(api_fp_id, years)
+    cursor.execute(" select subs_url, manager, recipient, subsidy_sum, release_date"
+                    " from subsidies s "
+                    " join federal_projects fp on fp.id_federal_project = s.id_federal_project "
+                    " where fp.fp_api_id = '%s' and s.release_date = %s"
+                    " order by s.subsidy_sum desc"
+                    " limit 3" %(api_fp_id, years)
     )
+
     top_three = cursor.fetchall()
-    print(top_three)
-    output = ''
 
-    for item in top_three:
-        for subitem in item:
-            output += str(subitem) + ';'
-
-    output = output[:-1]
-
-    return output
+    return json.dumps(top_three, ensure_ascii=False, separators=(',', ': '))
 
 
 # панель администратора
@@ -156,5 +131,5 @@ def admin_panel():
 
 
 if __name__ == "__main__":
-    #app.run(debug=True)
-    app.run(debug=True, host="26.173.145.160", port="80")
+    app.run(debug=True)
+    #app.run(debug=True, host="26.173.145.160", port="80")
