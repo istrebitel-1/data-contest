@@ -31,3 +31,8 @@
     background:#A06CD5;
     color: white;
 }
+@media  (max-width: 425px) { 
+    #AIDnone{
+        padding:0 !important;
+    }  
+} 
