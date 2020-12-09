@@ -6,6 +6,7 @@ import json
 
 app = Flask(__name__)
 
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
@@ -46,7 +47,8 @@ def database_fp():
     cursor.execute(" select fp.project_name, fp.fp_api_id"
                     " from federal_projects fp "
                     " join national_projects np on np.id_national_project = fp.id_national_project "
-                    "  where np.np_api_id ='%s'" %(api_np_id))
+                    "  where np.np_api_id ='%s'" %(api_np_id)
+    )
     results = cursor.fetchall()
     return json.dumps(results, ensure_ascii=False, separators=(',', ': '))
 
@@ -123,31 +125,37 @@ def db_fp_years():
     return json.dumps(top_three, ensure_ascii=False, separators=(',', ': '))
 
 
-# панель администратора
-@app.route('/admin/login', methods=['GET'])
-def admin_panel():
-    return render_template("admin_panel_login.html")
+# ---------------------------------------------------
+# панель администратора - в разработке
+# 
+# @app.route('/admin/login', methods=['GET'])
+# def admin_panel():
+#     return render_template("admin_panel_login.html")
 
-@app.route('/admin/login/check', methods=['GET'])
-def login():
-    login = request.args['login']
-    password = request.args['password']
-    cursor.execute(
-        "select login, password "
-        "from logins"
-    )
+
+# @app.route('/admin/login/check', methods=['GET'])
+# def login():
+#     login_c = request.args['login']
+#     password = request.args['password']
+#     cursor.execute(
+#         "select login, password "
+#         "from logins"
+#     )
     
-    results = cursor.fetchall()
+#     results = cursor.fetchall()
 
-    for item in results:
-        if login == item[0] and password == item[1]:
-             return "../admin_panel"
-        else:
-            return 'wrong'
-            
-@app.route('/admin_panel')
-def ret_admpanel():       
-    return render_template('admin_panel.html')
+#     for item in results:
+#         if login_c == item[0] and password == item[1]:
+#              return "../admin_panel"
+#         else:
+#             return 'wrong'
+
+
+# @app.route('/admin_panel')
+# def ret_admpanel():       
+#     return render_template('admin_panel.html')
+# ---------------------------------------------------
+
 
 if __name__ == "__main__":
     app.run(debug=True)
