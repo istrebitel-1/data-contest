@@ -111,6 +111,8 @@ function OpenFederal(elmnt){
       }else{
         document.getElementById(temptemp+'none').innerHTML = html_str1;
         document.getElementById(temptemp+'none').style.display='block';
+        document.getElementById(temptemp+'none').style.paddingLeft='0px';
+        document.getElementById(temptemp+'none').style.paddingRight='0px';
       }
 
       $(window).scrollTop($(elem).offset().top);

@@ -72,7 +72,7 @@
 }
 
 @media  (max-width: 425px) { 
-    #AIDnone{
+    #AIDnone, #DIDnone, #EIDnone, #FIDnone, #GIDnone, #LIDnone, #NIDnone, #PIDnone, #RIDnone, #SIDnone, #VIDnone, #IIDnone{
         padding:0 !important;
     }  
 } 
