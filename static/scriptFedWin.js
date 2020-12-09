@@ -68,25 +68,25 @@ function OpenFederal(elmnt){
         html_str1+="</select>";
         html_str1+="</form>";
         html_str1+="</div>";
-        html_str1+="<div class='row' id='subsinfo'>";
+        html_str1+="<div class='row' id='subsinfo"+fp_id+"'>";
         for (let i=0; i<federalString[2].length; i+=5){
           html_str1+="<a href='"+federalString[2][i]+"' id='row"+i+"' target='_blank'>"
           html_str1+="<div class='row Subsbackground'>"
           html_str1+="<div class='col-md-6 col-lg-3 col-12 mb-4'>";
-          html_str1+="<p class='headItem SubsHead h6'>Распорядитель</p>";
-          html_str1+="<p class='bodyItem SubsBody'>"+federalString[2][i+1]+"</p>";
+          html_str1+="<p class='headItem SubsHead"+fp_id+" h6'>Распорядитель</p>";
+          html_str1+="<p class='bodyItem SubsBody"+fp_id+"'>"+federalString[2][i+1]+"</p>";
           html_str1+="</div>";
           html_str1+="<div class='col-md-6 col-lg-5 col-12 mb-4'>";
-          html_str1+="<p class='headItem SubsHead h6'>Получатель</p>";
-          html_str1+="<p class='bodyItem SubsBody'>"+federalString[2][i+2]+"</p>";
+          html_str1+="<p class='headItem SubsHead"+fp_id+" h6'>Получатель</p>";
+          html_str1+="<p class='bodyItem SubsBody"+fp_id+"'>"+federalString[2][i+2]+"</p>";
           html_str1+="</div>";
           html_str1+="<div class='col-md-6 col-lg-2 col-6 mb-4'>";
-          html_str1+="<p class='headItem SubsHead h6'>Сумма</p>";
-          html_str1+="<p class='bodyItem SubsBody'>"+federalString[2][i+3]+"&#8381;</p>";
+          html_str1+="<p class='headItem SubsHead"+fp_id+" h6'>Сумма</p>";
+          html_str1+="<p class='bodyItem SubsBody"+fp_id+"'>"+federalString[2][i+3]+"&#8381;</p>";
           html_str1+="</div>";
           html_str1+="<div class='col-md-6 col-lg-2 col-6 mb-4'>";
-          html_str1+="<p class='headItem SubsHead h6'>Срок реализации</p>";
-          html_str1+="<p class='bodyItem SubsBody'>"+federalString[2][i+4]+"</p>";
+          html_str1+="<p class='headItem SubsHead"+fp_id+" h6'>Срок реализации</p>";
+          html_str1+="<p class='bodyItem SubsBody"+fp_id+"'>"+federalString[2][i+4]+"</p>";
           html_str1+="</div>";
           html_str1+="</div></a>";
         };
@@ -119,15 +119,15 @@ function OpenFederal(elmnt){
       document.getElementById('ONav'+stringId[0]+'').style.background='linear-gradient(90deg, #7764CA 0%, #6474CA 100%)';
       var tabcontent = document.getElementsByClassName("Subsbackground");
       for (let i=0; i<tabcontent.length; i++){
-        if (i!=1){
+        if ((i%3)!=1){
           tabcontent[i].style.backgroundColor="#fff";
         }  
       }
-      var subscontent= document.getElementsByClassName('SubsHead');
+      var subscontent= document.getElementsByClassName('SubsHead'+fp_id+'');
       for (let i=0; i<subscontent.length; i++){
         if ((i!=4)&&(i!=5)&&(i!=6)&&(i!=7)){
           subscontent[i].style.color='#3b49a8';
-          document.getElementsByClassName('SubsBody')[i].style.color='rgb(5, 5, 5)';
+          document.getElementsByClassName('SubsBody'+fp_id+'')[i].style.color='rgb(5, 5, 5)';
         }
       } 
   });
@@ -148,42 +148,43 @@ function getSubs(elmnt){
   $subs=ajaxRequest();
   $subs
   .done(function(data){
+    console.log(data);
     subs_info = JSON.parse(data);
-    document.getElementById("subsinfo").innerHTML='';
+    document.getElementById("subsinfo"+federal_id+"").innerHTML='';
     html_str1='';
     for (let i=0; i<subs_info.length; i++){
       html_str1+="<a href='"+subs_info[i][0]+"' id='row"+i*5+"' target='_blank'>"
       html_str1+="<div class='row Subsbackground'>"
       html_str1+="<div class='col-md-6 col-lg-3 col-12 mb-4'>";
-      html_str1+="<p class='headItem SubsHead h6'>Распорядитель</p>";
-      html_str1+="<p class='bodyItem SubsBody'>"+subs_info[i][1]+"</p>";
+      html_str1+="<p class='headItem SubsHead"+federal_id+" h6'>Распорядитель</p>";
+      html_str1+="<p class='bodyItem SubsBody"+federal_id+"'>"+subs_info[i][1]+"</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-6 col-lg-5 col-12 mb-4'>";
-      html_str1+="<p class='headItem SubsHead h6'>Получатель</p>";
-      html_str1+="<p class='bodyItem SubsBody'>"+subs_info[i][2]+"</p>";
+      html_str1+="<p class='headItem SubsHead"+federal_id+" h6'>Получатель</p>";
+      html_str1+="<p class='bodyItem SubsBody"+federal_id+"'>"+subs_info[i][2]+"</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-6 col-lg-2 col-6 mb-4'>";
-      html_str1+="<p class='headItem SubsHead h6'>Сумма</p>";
-      html_str1+="<p class='bodyItem SubsBody'>"+subs_info[i][3]+"&#8381;</p>";
+      html_str1+="<p class='headItem SubsHead"+federal_id+" h6'>Сумма</p>";
+      html_str1+="<p class='bodyItem SubsBody"+federal_id+"'>"+subs_info[i][3]+"&#8381;</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-6 col-lg-2 col-6 mb-4'>";
-      html_str1+="<p class='headItem SubsHead h6'>Срок реализации</p>";
-      html_str1+="<p class='bodyItem SubsBody'>"+subs_info[i][4]+"</p>";
+      html_str1+="<p class='headItem SubsHead"+federal_id+" h6'>Срок реализации</p>";
+      html_str1+="<p class='bodyItem SubsBody"+federal_id+"'>"+subs_info[i][4]+"</p>";
       html_str1+="</div>";
       html_str1+="</div></a>";
       };
-    document.getElementById("subsinfo").innerHTML=html_str1;
+    document.getElementById("subsinfo"+federal_id+"").innerHTML=html_str1;
     var tabcontent = document.getElementsByClassName("Subsbackground");
       for (let i=0; i<tabcontent.length; i++){
-        if (i!=1){
+        if ((i%3)!=1){
           tabcontent[i].style.backgroundColor="#fff";
         }  
       }
-      var subscontent= document.getElementsByClassName('SubsHead');
+      var subscontent= document.getElementsByClassName('SubsHead'+federal_id+'');
       for (let i=0; i<subscontent.length; i++){
         if ((i!=4)&&(i!=5)&&(i!=6)&&(i!=7)){
           subscontent[i].style.color='#3b49a8';
-          document.getElementsByClassName('SubsBody')[i].style.color='rgb(5, 5, 5)';
+          document.getElementsByClassName('SubsBody'+federal_id+'')[i].style.color='rgb(5, 5, 5)';
         }
       } 
   })
