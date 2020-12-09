@@ -1,36 +1,76 @@
-.headItem.h6 {
+.headItem {
     margin-bottom: 0 !important;
-    color:#A06CD5;
+    color:#F0E4FD;
 }
 .bodyItem {
     margin-bottom: 25px;
     font-weight: 700;
-    color: #000001;
+    color: #fff;
+}
+.btn-backtmNac{
+    padding: 0;
+    border: 2px solid transparent;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    text-transform: none;
+    box-shadow: none;
+    text-decoration: underline;
+    color: #fff;
+}
+.btn-backtmNac:hover{
+    box-shadow: none;
+    border: none;
+    text-decoration: underline;
+    color:#F0E4FD !important;
+    border: 2px solid #fff;
+    border-radius: 5px;
+}
+#subsinfo a{
+    color:#000;
+}
+#subsinfo #row5{
+    color:#fff;
+}
+#subsinfo a:hover{
+    text-decoration:underline;
 }
 .contfed{
     text-align: center;
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.07);
-    border-radius: 10px;
-    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+    border-radius: 5px;
+    background: linear-gradient(90deg, #7764CA 0%, #6474CA 100%);
+}
+.contfed:hover{
+    background: linear-gradient(90deg, #4d3ba8 0%, #3b49a8 100%) !important;
 }
 .contfed .h3{
-    color:#A06CD5;
+    color:#fff;
 }
 .mar-top{
     margin-top: 15px;
 }
+.Subsbackground{
+    border: 2px solid transparent;
+    border-radius: 5px;
+}
+.alert{
+    margin-bottom: 0 !important;
+}
 .btn-backtm {
     background: transparent;
-    border: 2px solid #A06CD5;
+    border: 2px solid #fff;
     border-radius: 5px;
-    color: #0F110C;
+    color: #fff;
     letter-spacing: 1px;
     display: inline-block;
 }
 .btn-backtm:hover{
-    background:#A06CD5;
-    color: white;
+    background:#fff;
+    color: rgb(5, 5, 5);
 }
+
 @media  (max-width: 425px) { 
     #AIDnone{
         padding:0 !important;

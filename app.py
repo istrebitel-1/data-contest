@@ -55,12 +55,11 @@ def database_fp():
 @app.route('/db_fedwindow', methods=['GET'])
 def db_fedwindow():
     api_fp_id = request.args['fp_id']
-    cursor.execute("select distinct p2.url, np.project_name, fp.project_name, fp.contracts_count, cast(round(cast(fp.contracts_sum as numeric), 2) as float)"
+    cursor.execute("select distinct np.project_name, fp.project_name, fp.contracts_count, cast(round(cast(fp.contracts_sum as numeric), 2) as float)"
                     " ,fp.subsidies_count, cast(round(cast(fp.subsidies_sum as numeric), 2) as float)"
                     " from national_projects np"
                     " join federal_projects fp on np.id_national_project = fp.id_national_project "
                     " left join subsidies s on s.id_federal_project = fp.id_federal_project"
-                    " join pictures p2 on p2.id_np = np.id_national_project "
                     " where fp.fp_api_id = '%s'" %(api_fp_id)
     )   
 
@@ -137,11 +136,12 @@ def login():
         "select login, password "
         "from logins"
     )
+    
     results = cursor.fetchall()
 
     for item in results:
         if login == item[0] and password == item[1]:
-            return render_template('admin_panel.html')
+            return 'admin_panel.html'
         else:
             return 'wrong'
 

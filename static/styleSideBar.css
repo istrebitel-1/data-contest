@@ -20,7 +20,7 @@
 }
 .btn-fedback:hover{
     background-color: #FFF;
-    color: #7764CA;
+    color: rgb(5, 5, 5);
 }
 .btn{
     letter-spacing: 1px;

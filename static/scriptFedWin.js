@@ -31,29 +31,27 @@ function OpenFederal(elmnt){
       html_str1+="<div class='container contfed'>";
       html_str1+="<div class='row'>";
       html_str1+="<div class='col-12 col-md-4 mb-4 mar-top'>";
-      html_str1+="<div class='row'>";
-      html_str1+="<div class='col-12'><img src="+federalString[0][0]+"></div>";
-      html_str1+="<div class='col-12 h3 font-weight-bold'>"+federalString[0][1]+"</div>";
-      html_str1+="</div>";
-      html_str1+="</div>";
+      html_str1+="<buttton class='btn btn-backtmNac mb-4' onclick='toMenu(temptemp, temptemp2)'>";
+      html_str1+="<div class='h3 font-weight-bold'>"+federalString[0][0]+"</div>";
+      html_str1+="</button></div>";
       html_str1+="<div class='col-12 col-md-8 mb-4 mar-top'>";
-      html_str1+="<div class='h3 font-weight-bold'>"+federalString[0][2]+"</div>";
+      html_str1+="<div class='h3 font-weight-bold'>"+federalString[0][1]+"</div>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-3 col-6 mb-4'>";
       html_str1+="<p class='headItem h6'>Количество контрактов</p>";
-      html_str1+="<p class='bodyItem'>"+federalString[0][3]+"</p>";
+      html_str1+="<p class='bodyItem'>"+federalString[0][2]+"</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-3 col-6 mb-4'>";
       html_str1+="<p class='headItem h6'>Сумма контрактов</p>";
-      html_str1+="<p class='bodyItem'>"+federalString[0][4]+"&#8381;</p>";
+      html_str1+="<p class='bodyItem'>"+federalString[0][3]+"&#8381;</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-3 col-6 mb-4'>";
       html_str1+="<p class='headItem h6'>Количество субсидий</p>";
-      html_str1+="<p class='bodyItem'>"+federalString[0][5]+"</p>";
+      html_str1+="<p class='bodyItem'>"+federalString[0][4]+"</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-3 col-6 mb-4'>";
       html_str1+="<p class='headItem h6'>Сумма субсидий</p>";
-      html_str1+="<p class='bodyItem'>"+federalString[0][6]+"&#8381;</p>";
+      html_str1+="<p class='bodyItem'>"+federalString[0][5]+"&#8381;</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-12 d-flex justify-content-around mb-4'>";
       html_str1+="<div class='h3 font-weight-bold'>Субсидии</div>";
@@ -61,7 +59,7 @@ function OpenFederal(elmnt){
 
       if (federalString[1][0]!=undefined){
 
-        html_str1+="<span>года реализации</span>";
+        html_str1+="<span class='headItem'>года реализации</span>";
         html_str1+="<select id='year"+fp_id+"' class='form-control' name='year_name' onchange='getSubs(this)'>";
         html_str1+='<option value="'+federalString[1][federalString[1].length-1]+'">'+federalString[1][federalString[1].length-1]+'</option>';
         console.log(federalString[1][federalString[1].length-1]);
@@ -77,20 +75,20 @@ function OpenFederal(elmnt){
           html_str1+="<a href='"+federalString[2][i]+"' id='row"+i+"' target='_blank'>"
           html_str1+="<div class='row Subsbackground'>"
           html_str1+="<div class='col-md-6 col-lg-3 col-12 mb-4'>";
-          html_str1+="<p class='headItem h6'>Распорядитель</p>";
-          html_str1+="<p class='bodyItem'>"+federalString[2][i+1]+"</p>";
+          html_str1+="<p class='headItem SubsHead h6'>Распорядитель</p>";
+          html_str1+="<p class='bodyItem SubsBody'>"+federalString[2][i+1]+"</p>";
           html_str1+="</div>";
           html_str1+="<div class='col-md-6 col-lg-5 col-12 mb-4'>";
-          html_str1+="<p class='headItem h6'>Получатель</p>";
-          html_str1+="<p class='bodyItem'>"+federalString[2][i+2]+"</p>";
+          html_str1+="<p class='headItem SubsHead h6'>Получатель</p>";
+          html_str1+="<p class='bodyItem SubsBody'>"+federalString[2][i+2]+"</p>";
           html_str1+="</div>";
           html_str1+="<div class='col-md-6 col-lg-2 col-6 mb-4'>";
-          html_str1+="<p class='headItem h6'>Сумма</p>";
-          html_str1+="<p class='bodyItem'>"+federalString[2][i+3]+"&#8381;</p>";
+          html_str1+="<p class='headItem SubsHead h6'>Сумма</p>";
+          html_str1+="<p class='bodyItem SubsBody'>"+federalString[2][i+3]+"&#8381;</p>";
           html_str1+="</div>";
           html_str1+="<div class='col-md-6 col-lg-2 col-6 mb-4'>";
-          html_str1+="<p class='headItem h6'>Срок реализации</p>";
-          html_str1+="<p class='bodyItem'>"+federalString[2][i+4]+"</p>";
+          html_str1+="<p class='headItem SubsHead h6'>Срок реализации</p>";
+          html_str1+="<p class='bodyItem SubsBody'>"+federalString[2][i+4]+"</p>";
           html_str1+="</div>";
           html_str1+="</div></a>";
         };
@@ -99,7 +97,8 @@ function OpenFederal(elmnt){
         html_str1+="</div>";
         html_str1+="<div class='col-12'>";
         html_str1+="<div class='row Subsbackground' id='row0'>"
-        html_str1+="<div class='col-12 h3 font-weight-bold'>Данный запрос не выдал результатов</div>";
+        html_str1+="<div class='alert alert-danger col-12'><strong>Ошибка!</strong> Данный запрос не выдал результатов.</div>";
+        html_str1+="</div>";
       };
         temptemp=stringId[0]+'ID';
         temptemp2='CN'+stringId[0];
@@ -121,9 +120,16 @@ function OpenFederal(elmnt){
       var tabcontent = document.getElementsByClassName("Subsbackground");
       for (let i=0; i<tabcontent.length; i++){
         if (i!=1){
-          tabcontent[i].style.backgroundColor="#D3E0EE";
+          tabcontent[i].style.backgroundColor="#fff";
+        }  
+      }
+      var subscontent= document.getElementsByClassName('SubsHead');
+      for (let i=0; i<subscontent.length; i++){
+        if ((i!=4)&&(i!=5)&&(i!=6)&&(i!=7)){
+          subscontent[i].style.color='#3b49a8';
+          document.getElementsByClassName('SubsBody')[i].style.color='rgb(5, 5, 5)';
         }
-      }    
+      } 
   });
 }
 
@@ -146,27 +152,40 @@ function getSubs(elmnt){
     document.getElementById("subsinfo").innerHTML='';
     html_str1='';
     for (let i=0; i<subs_info.length; i++){
-      html_str1+="<a href='"+subs_info[i][0]+"' id='row"+i+"' target='_blank'>"
+      html_str1+="<a href='"+subs_info[i][0]+"' id='row"+i*5+"' target='_blank'>"
       html_str1+="<div class='row Subsbackground'>"
       html_str1+="<div class='col-md-6 col-lg-3 col-12 mb-4'>";
-      html_str1+="<p class='headItem h6'>Распорядитель</p>";
-      html_str1+="<p class='bodyItem'>"+subs_info[i][1]+"</p>";
+      html_str1+="<p class='headItem SubsHead h6'>Распорядитель</p>";
+      html_str1+="<p class='bodyItem SubsBody'>"+subs_info[i][1]+"</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-6 col-lg-5 col-12 mb-4'>";
-      html_str1+="<p class='headItem h6'>Получатель</p>";
-      html_str1+="<p class='bodyItem'>"+subs_info[i][2]+"</p>";
+      html_str1+="<p class='headItem SubsHead h6'>Получатель</p>";
+      html_str1+="<p class='bodyItem SubsBody'>"+subs_info[i][2]+"</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-6 col-lg-2 col-6 mb-4'>";
-      html_str1+="<p class='headItem h6'>Сумма</p>";
-      html_str1+="<p class='bodyItem'>"+subs_info[i][3]+"&#8381;</p>";
+      html_str1+="<p class='headItem SubsHead h6'>Сумма</p>";
+      html_str1+="<p class='bodyItem SubsBody'>"+subs_info[i][3]+"&#8381;</p>";
       html_str1+="</div>";
       html_str1+="<div class='col-md-6 col-lg-2 col-6 mb-4'>";
-      html_str1+="<p class='headItem h6'>Срок реализации</p>";
-      html_str1+="<p class='bodyItem'>"+subs_info[i][4]+"</p>";
+      html_str1+="<p class='headItem SubsHead h6'>Срок реализации</p>";
+      html_str1+="<p class='bodyItem SubsBody'>"+subs_info[i][4]+"</p>";
       html_str1+="</div>";
       html_str1+="</div></a>";
       };
     document.getElementById("subsinfo").innerHTML=html_str1;
+    var tabcontent = document.getElementsByClassName("Subsbackground");
+      for (let i=0; i<tabcontent.length; i++){
+        if (i!=1){
+          tabcontent[i].style.backgroundColor="#fff";
+        }  
+      }
+      var subscontent= document.getElementsByClassName('SubsHead');
+      for (let i=0; i<subscontent.length; i++){
+        if ((i!=4)&&(i!=5)&&(i!=6)&&(i!=7)){
+          subscontent[i].style.color='#3b49a8';
+          document.getElementsByClassName('SubsBody')[i].style.color='rgb(5, 5, 5)';
+        }
+      } 
   })
 };
 
