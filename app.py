@@ -158,4 +158,4 @@ def db_fp_years():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
