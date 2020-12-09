@@ -15,9 +15,9 @@ def get_national_and_federal_projects_info(url):
     subs_id = 1
 
     try:
-        cursor.execute("truncate table test2.national_projects")
-        cursor.execute("truncate table test2.federal_projects")
-        cursor.execute("truncate table test2.subsidies")
+        cursor.execute("truncate table national_projects")
+        cursor.execute("truncate table federal_projects")
+        cursor.execute("truncate table subsidies")
         conn.commit()
     except Exception as e:
         print("Error!", e)
@@ -30,7 +30,7 @@ def get_national_and_federal_projects_info(url):
 
         try:
             cursor.execute(
-                "insert into test2.national_projects("
+                "insert into national_projects("
                 " id_national_project, project_name, total_np_budget, released_budget, np_api_id)"
                 " values (%i, '%s', %f, %f, '%s')" % (
                     index + 1, national_project_name, np_budget_released, np_budget_released, np_id)
@@ -53,7 +53,7 @@ def get_national_and_federal_projects_info(url):
 
             try:
                 cursor.execute(
-                    "insert into test2.federal_projects(id_federal_project, id_national_project, project_name,"
+                    "insert into federal_projects(id_federal_project, id_national_project, project_name,"
                     " project_budget, fp_api_id, subsidies_count, contracts_count, contracts_sum, subsidies_sum)"
                     "values (%i, %i, '%s', %f, '%s', %i, %i, %f, %f)" % (
                         proj_id, index + 1, federal_project_name, fp_budget, api_fp_id, subsidies_count,
@@ -101,7 +101,7 @@ def subsidies_info(url, api_fp_id, fp_id, s_start_id, pages):
 
             try:
                 cursor.execute(
-                    "insert into test2.subsidies(id_subsidy, id_federal_project, subsidy_sum, manager, recipient, release_date, reg_num, subs_url)"
+                    "insert into subsidies(id_subsidy, id_federal_project, subsidy_sum, manager, recipient, release_date, reg_num, subs_url)"
                     "values (%i, %i, %f, '%s', '%s', %i, '%s', '%s')" % (
                         subs_id_f, fp_id, full_amount, grbs_name, reciever, date_agreem, regnum, subs_url))
                 conn.commit()
