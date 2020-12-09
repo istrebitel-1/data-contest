@@ -84,6 +84,7 @@ def subsidies_info(url, api_fp_id, fp_id, s_start_id, pages):
             grbs_name = item_s['grbs_name'] # имя ГРБС
             date_agreem = item_s['year'] # дата соглашения
             full_amount = item_s['amount'] # сумма субсидии
+            subs_url = item_s['spending_subs_url'] # ссылка на субсидию
             reciever = item_s['receivers'][0]['receiver_name'] # получатель
             reciever = reciever.replace("'", '') # замена кавычек для корректных sql запросов
 
@@ -96,12 +97,12 @@ def subsidies_info(url, api_fp_id, fp_id, s_start_id, pages):
 
             try:
                 cursor.execute(
-                    "insert into subsidies(id_subsidy, id_federal_project, subsidy_sum, manager, recipient, release_date, reg_num)"
-                    "values (%i, %i, %f, '%s', '%s', %i, '%s')" % (
-                    subs_id_f, fp_id, full_amount, grbs_name, reciever, date_agreem, regnum))
+                    "insert into subsidies(id_subsidy, id_federal_project, subsidy_sum, manager, recipient, release_date, reg_num, subs_url)"
+                    "values (%i, %i, %f, '%s', '%s', %i, '%s', '%s')" % (
+                    subs_id_f, fp_id, full_amount, grbs_name, reciever, date_agreem, regnum, subs_url))
                 conn.commit()
             except Exception as e:
-                print('Error!', e, '\nTrying to fix it...\n')
+                print('Error!', e)
 
             subs_id_f += 1
 
