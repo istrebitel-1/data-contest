@@ -11,9 +11,6 @@ function login_check(){
     $admin=ajaxRequest();
     $admin
     .done(function(data){
-        //document.location.href=data;
-        html_str1="<a href='"+data+">переход</a>";
-        var ele=document.createElement("div");
-        body.appendChild(ele).innerHTML = html_str1;
+       window.open(data, "_blank")
     });
 }

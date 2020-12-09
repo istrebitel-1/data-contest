@@ -11,7 +11,6 @@ function ajaxRequest(){
   $nations
   .done(function(data){
     var nationsData = JSON.parse(data);
-    console.log(nationsData[0].length);
     for (let i=0; i<nationsData.length; i++){
       var parent_el = document.getElementById('dynamic');
       html_str1="";
@@ -50,7 +49,8 @@ function ajaxRequest(){
           datasets: [{
             data: [Number(nationsData[i][3]), Number(nationsData[i][4])],
             backgroundColor: ["#FF715B", "#2EC4B6"],
-            hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+            hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"],
+            borderColor:'transparent'
           }]
         },
         options: {
