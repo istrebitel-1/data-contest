@@ -141,10 +141,13 @@ def login():
 
     for item in results:
         if login == item[0] and password == item[1]:
-            return 'admin_panel.html'
+             return "../admin_panel"
         else:
             return 'wrong'
-
+            
+@app.route('/admin_panel')
+def ret_admpanel():       
+    return render_template('admin_panel.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

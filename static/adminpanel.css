@@ -1,0 +1,29 @@
+body,html{
+    height:100%;
+}
+.col-4{
+    background: linear-gradient(90deg, #7764CA 0%, #6474CA 100%);
+    box-shadow: 0 0.75rem 2.25rem rgba(92, 141, 255, 0.12);
+    color: #fff;
+    width: 100%;
+    border-radius: 1%;
+}
+.col-4:hover{
+    background: linear-gradient(90deg, #4d3ba8 0%, #3b49a8 100%) !important;
+}
+.form-group{
+    margin-top: 10px;
+}
+.btn-login{
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.btn-login:hover{
+    background-color: #FFF;
+    color: #7764CA;
+}

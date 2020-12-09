@@ -2,7 +2,6 @@ let temptemp2;
 let temptemp;
 function OpenFederal(elmnt){
  if((temptemp!=undefined)&& ($('#'+temptemp+'none').is(':visible'))){
-  console.log(temptemp+'none');  
   toMenu(temptemp, temptemp2);
  }
   var fp_id=elmnt.id;
@@ -62,7 +61,6 @@ function OpenFederal(elmnt){
         html_str1+="<span class='headItem'>года реализации</span>";
         html_str1+="<select id='year"+fp_id+"' class='form-control' name='year_name' onchange='getSubs(this)'>";
         html_str1+='<option value="'+federalString[1][federalString[1].length-1]+'">'+federalString[1][federalString[1].length-1]+'</option>';
-        console.log(federalString[1][federalString[1].length-1]);
         for (let i=0; i<federalString[1].length-1; i++){
           html_str1+='<option value="'+federalString[1][i]+'">'+federalString[1][i]+'</option>';
         }
@@ -197,4 +195,5 @@ function toMenu(id, block){
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "block";  
   }
+  $(window).scrollTop($(elem).offset().top);
 }
