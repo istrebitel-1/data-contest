@@ -27,13 +27,13 @@
     border: 2px solid #fff;
     border-radius: 5px;
 }
-#subsinfo a{
+.subsurl a{
     color:#000;
 }
-#subsinfo #row5{
+.subsurl #row5{
     color:#fff;
 }
-#subsinfo a:hover{
+.subsurl a:hover{
     text-decoration:underline;
 }
 .contfed{
@@ -51,7 +51,7 @@
 .mar-top{
     margin-top: 15px;
 }
-.Subsbackground{
+.SubsbackgroundCss{
     border: 2px solid transparent;
     border-radius: 5px;
 }
