@@ -68,10 +68,10 @@ function OpenFederal(elmnt){
         html_str1+="</select>";
         html_str1+="</form>";
         html_str1+="</div>";
-        html_str1+="<div class='row' id='subsinfo"+fp_id+"'>";
+        html_str1+="<div class='row subsurl' id='subsinfo"+fp_id+"'>";
         for (let i=0; i<federalString[2].length; i+=5){
           html_str1+="<a href='"+federalString[2][i]+"' id='row"+i+"' target='_blank'>"
-          html_str1+="<div class='row Subsbackground'>"
+          html_str1+="<div class='row SubsbackgroundCss SubsbackgroundJS"+fp_id+"'>"
           html_str1+="<div class='col-md-6 col-lg-3 col-12 mb-4'>";
           html_str1+="<p class='headItem SubsHead"+fp_id+" h6'>Распорядитель</p>";
           html_str1+="<p class='bodyItem SubsBody"+fp_id+"'>"+federalString[2][i+1]+"</p>";
@@ -94,8 +94,8 @@ function OpenFederal(elmnt){
       }else{
         html_str1+="</div>";
         html_str1+="<div class='col-12'>";
-        html_str1+="<div class='row Subsbackground' id='row0'>"
-        html_str1+="<div class='alert alert-danger col-12'><strong>Ошибка!</strong> Данный запрос не выдал результатов.</div>";
+        html_str1+="<div class='row SubsbackgroundJS"+fp_id+"' id='row0'>"
+        html_str1+="<div class='alert alert-danger col-12'><strong>Упс...</strong> Данный запрос не выдал результатов.</div>";
         html_str1+="</div>";
       };
         temptemp=stringId[0]+'ID';
@@ -117,7 +117,7 @@ function OpenFederal(elmnt){
 
       $(window).scrollTop($(elem).offset().top);
       document.getElementById('ONav'+stringId[0]+'').style.background='linear-gradient(90deg, #7764CA 0%, #6474CA 100%)';
-      var tabcontent = document.getElementsByClassName("Subsbackground");
+      var tabcontent = document.getElementsByClassName("SubsbackgroundJS"+fp_id+"");
       for (let i=0; i<tabcontent.length; i++){
         if ((i%3)!=1){
           tabcontent[i].style.backgroundColor="#fff";
@@ -154,7 +154,7 @@ function getSubs(elmnt){
     html_str1='';
     for (let i=0; i<subs_info.length; i++){
       html_str1+="<a href='"+subs_info[i][0]+"' id='row"+i*5+"' target='_blank'>"
-      html_str1+="<div class='row Subsbackground'>"
+      html_str1+="<div class='row SubsbackgroundCss SubsbackgroundJS"+federal_id+"'>"
       html_str1+="<div class='col-md-6 col-lg-3 col-12 mb-4'>";
       html_str1+="<p class='headItem SubsHead"+federal_id+" h6'>Распорядитель</p>";
       html_str1+="<p class='bodyItem SubsBody"+federal_id+"'>"+subs_info[i][1]+"</p>";
@@ -174,7 +174,7 @@ function getSubs(elmnt){
       html_str1+="</div></a>";
       };
     document.getElementById("subsinfo"+federal_id+"").innerHTML=html_str1;
-    var tabcontent = document.getElementsByClassName("Subsbackground");
+    var tabcontent = document.getElementsByClassName("SubsbackgroundJS"+federal_id+"");
       for (let i=0; i<tabcontent.length; i++){
         if ((i%3)!=1){
           tabcontent[i].style.backgroundColor="#fff";
