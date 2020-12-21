@@ -5,7 +5,7 @@
 Используется: 
 - Python 3.7
 - JavaScript
-- Boostrap 4
+- Bootstrap 4
 - CSS 3
 - HTML 5
 - PostgreSQL 
